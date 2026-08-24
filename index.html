@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Laila & Thaslim — Wedding Invitation</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #111111;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .page img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* COUNTDOWN */
+
+    .countdown-section {
+      text-align: center;
+      padding: 45px 15px 20px;
+      background: white;
+    }
+
+    .countdown-title {
+      font-size: 18px;
+      letter-spacing: 5px;
+      margin-bottom: 28px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .time-box {
+      min-width: 72px;
+    }
+
+    .number {
+      font-size: 38px;
+      font-weight: normal;
+      line-height: 1;
+    }
+
+    .label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin-top: 10px;
+    }
+
+    .divider {
+      font-size: 30px;
+      opacity: 0.4;
+      padding-top: 2px;
+    }
+
+    .wedding-date {
+      margin-top: 30px;
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+
+    .wedding-time {
+      margin-top: 8px;
+      font-size: 12px;
+      letter-spacing: 3px;
+    }
+
+    /* Mobile adjustment */
+
+    @media (max-width: 420px) {
+
+      .countdown-section {
+        padding-top: 35px;
+      }
+
+      .countdown-title {
+        font-size: 15px;
+        letter-spacing: 3px;
+      }
+
+      .time-box {
+        min-width: 58px;
+      }
+
+      .number {
+        font-size: 29px;
+      }
+
+      .label {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .divider {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE 1 -->
+  <section class="page">
+    <img src="page1.png" alt="Laila and Thaslim Save the Date">
+  </section>
+
+
+  <!-- PAGE 2 -->
+  <section class="page">
+    <img src="page2.png" alt="Wedding invitation details">
+  </section>
+
+
+  <!-- PAGE 3 + LIVE COUNTDOWN -->
+  <section class="page">
+
+    <div class="countdown-section">
+
+      <div class="countdown-title">
+        COUNTDOWN TO FOREVER
+      </div>
+
+      <div class="countdown">
+
+        <div class="time-box">
+          <div class="number" id="days">00</div>
+          <div class="label">DAYS</div>
+        </div>
+
+        <div class="divider">|</div>
+
+        <div class="time-box">
+          <div class="number" id="hours">00</div>
+          <div class="label">HOURS</div>
+        </div>
+
+        <div class="divider">|</div>
+
+        <div class="time-box">
+          <div class="number" id="minutes">00</div>
+          <div class="label">MIN</div>
+        </div>
+
+        <div class="divider">|</div>
+
+        <div class="time-box">
+          <div class="number" id="seconds">00</div>
+          <div class="label">SEC</div>
+        </div>
+
+      </div>
+
+      <div class="wedding-date">
+        SEP 20, 2026
+      </div>
+
+      <div class="wedding-time">
+        11 AM ONWARDS
+      </div>
+
+    </div>
+
+    <!-- YOUR CANVA COUPLE ILLUSTRATION -->
+    <img src="page3.png" alt="Laila and Thaslim wedding illustration">
+
+  </section>
+
+
+  <!-- PAGE 4 -->
+  <section class="page">
+    <img src="page4.png" alt="Wedding message and best wishes">
+  </section>
+
+
+  <script>
+
+    // Wedding date and time:
+    // September 20, 2026 at 11:00 AM India Standard Time
+
+    const weddingDate =
+      new Date("2026-09-20T11:00:00+05:30").getTime();
+
+    function updateCountdown() {
+
+      const now = new Date().getTime();
+
+      const difference = weddingDate - now;
+
+      if (difference <= 0) {
+
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        return;
+      }
+
+      const days = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+      );
+
+      const hours = Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+      );
+
+      const minutes = Math.floor(
+        (difference / (1000 * 60)) % 60
+      );
+
+      const seconds = Math.floor(
+        (difference / 1000) % 60
+      );
+
+      document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+
+    setInterval(updateCountdown, 1000);
+
+  </script>
+
+</body>
+</html>
